@@ -1,206 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <title>Calculator</title>
-    <style>
-        * {
-            margin:0;
-            padding:0;
-            box-sizing: border-box;
-            font-size: larger;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-        .container {
-            height:700px;
-            width:500px;
-            display: grid;
-            margin:auto;
-            grid-template-columns: 7fr 1fr;
-            grid-template-rows: 1fr 2fr ;
-            border: 10px solid black;
-        }
-        #displaycurrent {
-            display:flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid black;
-            grid-column-start: 1;
-            grid-column-end: 3;
-            background-color: rgb(80, 73, 73);
-            color:white
-        }
-        
-      .dialpad {
-            /* border: 1px solid black; */
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: 1fr 1fr 1fr 1fr; 
-            background-color: yellow;
-        }
-        .operators {
-            display:flex;
-            flex-direction: column;
-            background-color: rgb(236, 85, 85);
-            
-        }
-        .row {
-            display:flex;
-            justify-content: stretch;
-        }
-        .btn {
-            flex:1;
-            background-color: transparent;
-            border:1px solid black;
-        }
-        .bnum {
-            background-color: rgb(128, 125, 125);
-            color:white;
-            text-shadow:1px 1px black;
-        }
-        .opt{
-            background-color: rgb(130, 185, 153);
-            color:white;
-        }
-        #displayprev {
-            position:absolute;
-            color:white;
-            padding:20px;
-            font-size: 20px;
-        }
-        #del {
-            color:white;
-        }
-    </style>
-</head>
-<body>
+    <link rel="stylesheet" href="./styles/calculatorStyle.css" />
+  </head>
+  <body>
     <div class="container">
-        <div id="displayprev">Display</div>
-        <div id="displaycurrent">8008135</div>
-        <div class="dialpad">
-            <div class="row">
-                <button class="btn bnum" value="7">7</button>
-                <button class="btn bnum" value="8">8</button>
-                <button class="btn bnum" value="9">9</button>
-            </div>
-            <div class="row">
-                <button class="btn bnum" value="4">4</button>
-                <button class="btn bnum" value="5">5</button>
-                <button class="btn bnum" value="6">6</button>
-            </div>
-            <div class="row">
-                <button class="btn bnum" value="1">1</button>
-                <button class="btn bnum" value="2">2</button>
-                <button class="btn bnum" value="3">3</button>
-            </div>
-            <div class="row">
-                <button class="btn bnum">.</button>
-                <button class="btn bnum" value="0" >0</button>
-                <button class="btn" id="equals">=</button>
-            </div>
+      <img src="./images/1.png" width="60rem" class="img-logo">
+      <div id="displayprev">0.00</div>
+      <div id="displaycurrent">0.00</div>
+      
+      <div class="dialpad">
+        <div class="row">
+          <button class="btn bnum" value="7">7</button>
+          <button class="btn bnum" value="8">8</button>
+          <button class="btn bnum" value="9">9</button>
         </div>
-        <div class="operators">
-                <button class="btn" id="del">AC</button>
-                <button class="btn opt">/</button>
-                <button class="btn opt">x</button>
-                <button class="btn opt">-</button>
-                <button class="btn opt">+</button>
+        <div class="row">
+          <button class="btn bnum" value="4">4</button>
+          <button class="btn bnum" value="5">5</button>
+          <button class="btn bnum" value="6">6</button>
         </div>
+        <div class="row">
+          <button class="btn bnum" value="1">1</button>
+          <button class="btn bnum" value="2">2</button>
+          <button class="btn bnum" value="3">3</button>
+        </div>
+        <div class="row">
+          <button class="btn bnum">.</button>
+          <button class="btn bnum" value="0">0</button>
+          <button class="btn bnum" id="equals">=</button>
+        </div>
+      </div>
+      <div class="operators">
+        <button class="btn opt" id="del">AC</button>
+        <button class="btn opt">/</button>
+        <button class="btn opt">x</button>
+        <button class="btn opt">-</button>
+        <button class="btn opt">+</button>
+      </div>
     </div>
-    <script>
-        class Calculator {
-            constructor(prevnumtext, currentnumtext) {
-                this.prevnumtext = prevnumtext;
-                this.currentnumtext = currentnumtext;
-                this.clear();
-            }
-            clear () {
-                this.currentoperand = "";
-                this.previousoperand = "";
-                this.operation = undefined; 
-            }
-            del () {
-
-            }
-            appendnum(number) {
-                if(number === "." && this.currentoperand.includes('.')) return;
-                this.currentoperand = this.currentoperand.toString() + number.toString();
-            }
-            chooseop (operation) {
-
-                if(this.currentoperand == "") return;
-                if(this.previousoperand !== "") {
-                    this.compute();
-                }
-                this.operation = operation;
-                this.previousoperand = this.currentoperand;
-                this.currentoperand = "";
-            }
-            compute () {
-                let computation;
-                let prev = parseFloat(this.previousoperand);
-                let current = parseFloat(this.currentoperand);
-                if (isNaN(prev)||isNaN(current)) return;
-
-                switch (this.operation) {
-                    case '+':
-                    computation = prev + current;
-                        break;
-                    case '-':
-                    computation = prev - current;
-                        break;
-                    case 'x':
-                    computation = prev * current;
-                        break;
-                    case '/':
-                    computation = prev / current;
-                        break;
-                    default:
-                        return;
-                }
-                this.currentoperand = computation;
-                this.operation = undefined;
-                this.previousoperand = '';
-            } 
-            updatedisplay () {
-                this.currentnumtext.innerText = this.currentoperand;
-                this.prevnumtext.innerText = this.previousoperand;
-            }
-        }
-
-        const numbuttons = document.querySelectorAll('.bnum');
-        const operatives = document.querySelectorAll('.opt');
-        const prevnumtext = document.getElementById('displayprev');
-        const currentnumtext = document.getElementById('displaycurrent');
-        const delbutton = document.getElementById('del');
-        const equals = document.getElementById('equals');
-        
-        const calculator = new Calculator(prevnumtext,currentnumtext);
-        numbuttons.forEach(button => {
-            button.addEventListener('click', () => {
-                calculator.appendnum(button.innerText);
-                calculator.updatedisplay();
-            });
-        });
-
-        operatives.forEach(op => {
-            op.addEventListener('click', () => {
-                calculator.chooseop(op.innerText);
-                calculator.updatedisplay();
-            });
-        });
-
-        delbutton.addEventListener('click', () => {
-            calculator.clear();
-            calculator.updatedisplay();
-        });
-
-        equals.addEventListener('click', () => {
-            calculator.compute();
-            calculator.updatedisplay();
-        });
-
-    </script>
-</body>
+    <footer>
+      <script src="./scripts/calc.js"></script>
+    </footer>
+  </body>
 </html>
+  
