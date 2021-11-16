@@ -13,19 +13,23 @@ class Calculator {
     this.previousoperand = "";
     this.operation = undefined;
   }
+  // appending the numbers to the current num, to a string
   appendnum(number) {
     if (number === "." && this.currentoperand.includes(".")) return;
     this.currentoperand = this.currentoperand.toString() + number.toString();
   }
+
   chooseop(operation) {
     if (this.currentoperand == "") return;
     if (this.previousoperand !== "") {
       this.compute();
     }
+    
     this.operation = operation;
     this.previousoperand = this.currentoperand;
     this.currentoperand = "";
   }
+  // calculations Part
   compute() {
     let computation;
     let prev = parseFloat(this.previousoperand);
@@ -52,11 +56,13 @@ class Calculator {
     this.operation = undefined;
     this.previousoperand = "";
   }
+  // updating 
   updatedisplay() {
     this.currentnumtext.innerText = this.currentoperand;
     this.prevnumtext.innerText = this.previousoperand;
   }
 }
+// Declarations
 const numbuttons = document.querySelectorAll(".bnum");
 const operatives = document.querySelectorAll(".opt");
 const prevnumtext = document.getElementById("displayprev");
