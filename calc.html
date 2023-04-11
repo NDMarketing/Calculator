@@ -15,43 +15,43 @@
   <body>
     <div class="container">
       <div class="calculatorOuter">
-      <img src="./images/1.png" width="60rem" class="img-logo">
-      <div id="displayprev">0.00</div>
-      <div id="displaycurrent">0.00</div>
-      
-      <div class="dialpad">
-        <div class="row">
-          <button class="btn bnum" value="7">7</button>
-          <button class="btn bnum" value="8">8</button>
-          <button class="btn bnum" value="9">9</button>
+        <img src="./images/1.png" width="60rem" class="img-logo">
+        <div id="displayprev">0.00</div>
+        <div id="displaycurrent">0.00</div>
+        <div class="dialpad">
+          <div class="row">
+            <button class="btn bnum" value="7">7</button>
+            <button class="btn bnum" value="8">8</button>
+            <button class="btn bnum" value="9">9</button>
+          </div>
+          <div class="row">
+            <button class="btn bnum" value="4">4</button>
+            <button class="btn bnum" value="5">5</button>
+            <button class="btn bnum" value="6">6</button>
+          </div>
+          <div class="row">
+            <button class="btn bnum" value="1">1</button>
+            <button class="btn bnum" value="2">2</button>
+            <button class="btn bnum" value="3">3</button>
+          </div>
+          <div class="row">
+            <button class="btn bnum">.</button>
+            <button class="btn bnum" value="0">0</button>
+            <button class="btn bnum" id="equals">=</button>
+          </div>
         </div>
-        <div class="row">
-          <button class="btn bnum" value="4">4</button>
-          <button class="btn bnum" value="5">5</button>
-          <button class="btn bnum" value="6">6</button>
+        <div class="operators">
+          <button class="btn opt" id="del">AC</button>
+          <button class="btn opt">/</button>
+          <button class="btn opt">x</button>
+          <button class="btn opt">-</button>
+          <button class="btn opt">+</button>
         </div>
-        <div class="row">
-          <button class="btn bnum" value="1">1</button>
-          <button class="btn bnum" value="2">2</button>
-          <button class="btn bnum" value="3">3</button>
-        </div>
-        <div class="row">
-          <button class="btn bnum">.</button>
-          <button class="btn bnum" value="0">0</button>
-          <button class="btn bnum" id="equals">=</button>
-        </div>
-      </div>
-      <div class="operators">
-        <button class="btn opt" id="del">AC</button>
-        <button class="btn opt">/</button>
-        <button class="btn opt">x</button>
-        <button class="btn opt">-</button>
-        <button class="btn opt">+</button>
-      </div>
       </div>
     </div>
     <footer>
-      <script src="./scripts/calc.js"></script>
+      <script type="module" src="./scripts/calc.js"></script>
+      <script type="module" src="./scripts/Calculator.js"></script>
     </footer>
   </body>
 </html>
